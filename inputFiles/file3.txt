@@ -1,0 +1,189 @@
+This tutorial will show you how to create a Next.js application that:
+
+Fetches content from a PostgreSQL database (Supabase)
+Updates content without needing to redeploy to Vercel
+Serves optimized, blur-up images with next/image
+Easily styles components with Tailwind CSS
+I used this to create swag.vercel.app, which is a collection of tweets from the Next.js community showing off their swag.
+
+Example of the image gallery
+Getting Started
+To set up your application, we can use create-next-app to clone a Next.js and Tailwind CSS starter application from the official examples directory.
+
+npx create-next-app --example with-tailwindcss image-gallery
+This example includes:
+
+The latest version of Next.js
+Prettier configured to format code and organize Tailwind CSS class names
+TypeScript configured for Next.js
+Tailwind CSS configured to strip away unused class names
+An example Next.js API Route
+Styling the Image Gallery
+Now that Tailwind is configured, we can create components to style our image gallery. Inside pages/index.tsx, which is the entry point into our application, let's use CSS Grid to set up the container for our images. We'll add some padding and grid spacing, which conditionally changes based on the viewport.
+
+pages/index.tsx
+export default function Gallery() {
+  return (
+    <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        {/* Images will go here */}
+      </div>
+    </div>
+  );
+}
+Next, we need to create a component for the individual image. Not only do we want to show the image, but we also would like to show some additional metadata. In this instance, I'm adding a name and Twitter handle. Each image will also link out to the original tweet.
+
+Let's make a new component with placeholder data:
+
+pages/index.tsx
+function Image() {
+  return (
+    <a href="#" className="group">
+      <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+        <img
+          alt=""
+          src="https://bit.ly/placeholder-img"
+          className="group-hover:opacity-75"
+        />
+      </div>
+      <h3 className="mt-4 text-sm text-gray-700">Lee Robinson</h3>
+      <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+    </a>
+  );
+}
+We're using group modifiers to make the hover area the entire component, including the text, making the image's opacity dimmed. We're also ensuring the image maintains a 1:1 aspect ratio (square), which requires a Tailwind CSS plugin. Let's install that.
+
+npm i -D @tailwindcss/aspect-ratio
+Then, we can update our tailwind.config.js file:
+
+tailwind.config.js
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/aspect-ratio')],
+};
+Optimizing Images
+To help achieve good Core Web Vitals, we want to optimize images. Next.js provides an Image component that gives us:
+
+Faster Page Loads: Images are only loaded when they enter the viewport
+Visual Stability: Prevents Cumulative Layout Shift automatically
+Improved Performance: Images use modern image formats (like WebP) for smaller file sizes and serve smaller images based on the device size
+Let's update our Image component to use next/image, and rename it to BlurImage to prevent a naming collison with the Image component we imported:
+
+pages/index.tsx
+import Image from 'next/image';
+ 
+function BlurImage() {
+  return (
+    <a href="#" className="group">
+      <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+        <Image
+          alt=""
+          src="https://bit.ly/placeholder-img"
+          layout="fill"
+          objectFit="cover"
+          className="group-hover:opacity-75"
+        />
+      </div>
+      <h3 className="mt-4 text-sm text-gray-700">Lee Robinson</h3>
+      <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+    </a>
+  );
+}
+We'll use the fill layout and object-fit CSS property to properly scale the image.
+
+The Next.js Image component requires an allowlist to specify which domains we can optimize images from. While we're using bit.ly as a placeholder, we can add any domain we want to the allowlist inside next.config.js:
+
+next.config.js
+/** @type {import('next').NextConfig} */
+module.exports = {
+  reactStrictMode: true,
+  images: {
+    domains: ['bit.ly'],
+  },
+};
+Blurred Placeholders for Images
+When images are loading, we'd like to show a blurred version for a better user experience. While the Image component does include this for local image files, we're going to be retrieving images from Supabase soon. Instead, we can use onLoadingComplete and CSS animation + blur to achieve a similar effect.
+
+pages/index.tsx
+import Image from 'next/image';
+import { useState } from 'react';
+ 
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(' ');
+}
+ 
+function BlurImage() {
+  const [isLoading, setLoading] = useState(true);
+ 
+  return (
+    <a href="#" className="group">
+      <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+        <Image
+          alt=""
+          src="https://bit.ly/placeholder-img"
+          layout="fill"
+          objectFit="cover"
+          className={cn(
+            'group-hover:opacity-75 duration-700 ease-in-out',
+            isLoading
+              ? 'grayscale blur-2xl scale-110'
+              : 'grayscale-0 blur-0 scale-100'
+          )}
+          onLoadingComplete={() => setLoading(false)}
+        />
+      </div>
+      <h3 className="mt-4 text-sm text-gray-700">Lee Robinson</h3>
+      <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+    </a>
+  );
+}
+Now, let's replace our placeholder data with real items from Supabase.
+
+Setting Up Supabase
+Supabase makes it really easy to create your backend, giving you a PostgreSQL database in a few clicks. Inside our Supabase dashboard, let's configure our new project:
+
+Click "New project"
+Choose your organization
+Pick a name, database password, and click "Create new project"
+After your project is created, you'll want to click copy and save these two values:
+
+Project API keys → service_role: This is how we'll securely connect to Supabase on the server.
+Configuration → URL: This is the API endpoint the Supabase client will use to fetch and edit data.
+Save these values as Environment Variables inside a new file .env.local inside your Next.js application:
+
+NEXT_PUBLIC_SUPABASE_URL=your-value-here
+SUPABASE_SERVICE_ROLE_KEY=your-value-here
+Next, install the Supabase client:
+
+npm i @supabase/supabase-js
+Finally, we can create a new client and connect to Supabase using our environment variables:
+
+pages/index.tsx
+import { createClient } from '@supabase/supabase-js';
+ 
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+Adding Data to Supabase
+First, we will need to create a new table inside Supabase for our images.
+
+We'll name our table images
+We'll keep the id and created_at columns as is
+Let's add name, href, userName, and imageSrc columns, which are all text
+Click "Save" and we're done!
+Example of the image gallery
+We can add data directly through the Supabase web editor, but for demonstration purposes, here's how we could insert data using our Supabase client:
+
+await supabaseAdmin.from('images').insert([{
+  name: 'Pedro Duarte',
+  href: 'https://twitter.com/peduarte/status/1463897468383412231',
+  username: '@peduarte',
+  imageSrc: 'https://pbs.twimg.com/media/FFDOtLkWYAsWjTM?format=jpg',
+});

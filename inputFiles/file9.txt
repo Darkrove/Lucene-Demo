@@ -1,0 +1,33 @@
+Rust is a fast, reliable, and memory-efficient programming language. It's been voted the most loved programming language six years in a row (survey). Created by Mozilla, it's now used at Facebook, Apple, Amazon, Microsoft, and Google for systems infrastructure, encryption, virtualization, and more low-level programming.
+
+Why is Rust now being used to replace parts of the JavaScript web ecosystem like minification (Terser), transpilation (Babel), formatting (Prettier), bundling (webpack), linting (ESLint), and more?
+
+Note: This post is also available in Chinese, Portuguese, Vietnamese, and Arabic.
+
+What is Rust?
+Rust helps developers write fast software that's memory-efficient. It's a modern replacement for languages like C++ or C with a focus on code safety and concise syntax.
+
+Rust is quite different than JavaScript. JavaScript tries to find variables or objects not in use and automatically clears them from memory. This is called Garbage Collection. The language abstracts the developer from thinking about manual memory management.
+
+With Rust, developers have more control over memory allocation, without it being as painful as C++.
+
+Rust uses a relatively unique memory management approach that incorporates the idea of memory “ownership”. Basically, Rust keeps track of who can read and write to memory. It knows when the program is using memory and immediately frees the memory once it is no longer needed. It enforces memory rules at compile time, making it virtually impossible to have runtime memory bugs. You do not need to manually keep track of memory. The compiler takes care of it. – Discord
+
+Adoption
+On top of the companies mentioned above, Rust is also being used for popular open-source libraries like:
+
+Firecracker (AWS)
+Bottlerocket (AWS)
+Quiche (Cloudflare)
+Neqo (Mozilla)
+Rust has been a force multiplier for our team, and betting on Rust was one of the best decisions we made. More than performance, its ergonomics and focus on correctness has helped us tame sync's complexity. We can encode complex invariants about our system in the type system and have the compiler check them for us. – Dropbox
+
+From JavaScript to Rust
+JavaScript is the most widely used programming language, operating on every device with a web browser. Over the past ten years, a massive ecosystem has been built around JavaScript:
+
+Webpack: developers wanted to bundle multiple JavaScript files into one.
+Babel: developers wanted to write modern JavaScript while supporting older browsers.
+Terser: developers wanted to generate the smallest possible file sizes.
+Prettier: developers wanted an opinionated code formatter that just worked.
+ESLint: developers wanted to find issues with their code before deploying.
+Millions of lines of code have been written and even more bugs have been fixed to create the bedrock for shipping web applications of today. All of these tools are written with JavaScript or TypeScript. This has worked well, but we've reached peak optimization with JS. This has inspired a new class of tools, designed to drastically improve the performance of building for the web.

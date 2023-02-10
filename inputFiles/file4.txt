@@ -1,0 +1,61 @@
+When front-end developers are learning the full-stack, they often stumble on which backend to use. If they hear Redis, they think of in-memory caching. That's what I thought, at least. After doing more research, I was surprised to find Redis excels at hashmaps, counters, sorted lists, and even queues. It's possible to use Redis for your entire database!
+
+This article will explore using Redis with Next.js in Serverless environments.
+
+Creating a Redis Instance
+Upstash is the easiest way I've found to deploy a managed Redis instance. A few reasons I recommend it:
+
+There's a generous free tier, and then per-request pricing when you're ready to upgrade. This keeps costs free (or extremely low). There's even a $120/month cap to prevent surprises, plus reserved plans for larger projects.
+With Upstash, you can use Redis for more than just caching with durable storage. There's even Strong Consistency mode for guaranteed, durable writes.
+It's fast. Really, really fast. Extremely low latency.
+The Upstash Integration for Vercel makes it easy to get started with Serverless Redis. We'll start by deploying the completed project, and then running the application locally.
+
+Deploy the demo to Vercel using the Upstash Integration.
+You'll be prompted to sign-up or sign-in to Upstash.
+Then, you can create a free database and attach it to your Vercel project.
+Click "Complete on Vercel".
+That's it! You should have a deployed project and URL.
+By default, both Vercel and Upstash use the us-east-1 region for Serverless Functions. Using the same region is critical to minimize latency between your Serverless Functions and Redis.
+
+Connecting to Redis
+If you're using Vercel, you can clone the git repository created during deployment. The REDIS_URL environment variable was added by the Upstash Integration while deploying. To run the application locally, we'll need to pull our environment variables locally using the Vercel CLI.
+
+$ vercel link
+$ vercel env pull .env.local
+If you're not using Vercel, you can clone this demo locally using npx create-next-app --example with-redis roadmap. Then, create an .env.local file in the root of your repository and add the Redis connection string.
+
+REDIS_URL=redis://:password@endpoint:port
+We'll use ioredis, a Node.js Redis client with async/await support, to connect to Redis.
+
+lib/redis.js
+import Redis from 'ioredis';
+ 
+const redis = new Redis(process.env.REDIS_URL);
+ 
+export default redis;
+Finally, we can use this inside any page or API Route to retrieve information from Redis.
+
+import redis from 'lib/redis';
+ 
+const value = JSON.parse(await redis.hget('feedback', id));
+Using Redis with Next.js
+Here's a few common Redis commands you might need to use:
+
+Fetching a JSON object: redis.hget('feedback', id)
+Creating a JSON object: redis.hset('feedback', id, "{'key': 'val'}")
+Deleting by key: redis.hdel('feedback', id)
+Fetching a list of items: redis.hvals('feedback')
+In the demo application, we use Redis for the following:
+
+The feature list is server-rendered using getServerSideProps. We fetch all features and sort based on the score and title.
+The initial feature list from the server populates the local cache of SWR. This ensures data remains up-to-date on the client-side.
+When adding features or emails, a POST request is sent to an API Route to update Redis.
+Adding/upvoting features will mutate the client-side cache for optimistic UI updates.
+You can view the entire Redis API here. For more advanced Redis usage, see the Redis API compatibility with Upstash here.
+
+Conclusion
+I frequently need to store data, somewhere. It doesn't always need to be complex – a key/value store will often suffice. After working more with Upstash, Redis is now my preferred solution for this (and apparently many other people's as well).
+
+View the demo ✨
+Deploy your own 🚀
+Bonus: If you need to inspect your Redis database locally, check out TablePlus for a GUI and redis-cli if you prefer the command-line.

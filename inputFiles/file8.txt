@@ -1,0 +1,85 @@
+Next.js Conf exceeded all my expectations this year.
+
+110,000+ registered and 55,000+ joined live to watch the keynote and community talks. Hundreds of developers joined live in San Francisco, London, and New York.
+
+This conference was unlike any I've attended before – we put so much effort into creating a unique experience, both for those online and in person.
+
+Building and growing a community is the most rewarding part of my role, and I'd like to take you behind the scenes on all things Next.js Conf 2022.
+
+BrendanEich
+BrendanEich
+@BrendanEich
+Dynamic at the speed of static.
+
+In 1997, I gave a short talk at a Java conf about JS-first apps that stream UX, based on early JS adopters’ wild demos; but little did i know where the general idea would go thanks to many talented people over 25 years.
+
+@vercel has built it. 
+Dynamic at the speed of static.
+
+In 1997, I gave a short talk at a Java conf about JS-first apps that stream UX, based on early JS adopters’ wild demos; but little did i know where the general idea would go thanks to many talented people over 25 years.
+
+@vercel has built it. https://t.co/cjD807HDRK6:06 PM - Oct 25, 2022
+10
+157
+917
+Better ingredients, better pizza, Next.js Conf
+'Twas the night before Conf™️ and we hosted a small community dinner at a local pizzeria. It was invigorating. Old friends getting back together after years – and new friends joining from around the world to talk JavaScript and the Web.
+
+Beccalytics
+Rebecca Bakels 🏝️
+@Beccalytics
+Night One: Community dinner. Bonding over error messages and cruel children with @TatianaTMac and @vuejs 
+Night One: Community dinner. Bonding over error messages and cruel children with @TatianaTMac and @vuejs https://t.co/BdI0lGox4NNight One: Community dinner. Bonding over error messages and cruel children with @TatianaTMac and @vuejs https://t.co/BdI0lGox4NNight One: Community dinner. Bonding over error messages and cruel children with @TatianaTMac and @vuejs https://t.co/BdI0lGox4NNight One: Community dinner. Bonding over error messages and cruel children with @TatianaTMac and @vuejs https://t.co/BdI0lGox4N10:09 PM - Oct 27, 2022
+2
+0
+8
+One person told me:
+
+"The food was good, the people were great, and the conversation was even better"
+
+Honestly, it doesn't get much better than that for me.
+
+We'll do it live¹
+Our team sprinted towards the Conf finish line, trying to get everything ready for the big day. I told myself "Oh, we'll worry about the pre-show later, first we need to do [x, y, z]". Welp. Turn out preparing for things makes you more prepared.
+
+It was kind of hilarious – Delba and I went to practice that morning and we both couldn't really make words come out of our mouths. A combination of nerves and excitement. I became stressed, 30 minutes before we were scheduled to go live in front of thousands of people.
+
+But... the lack of scripting and planning actually led to a great outcome. We truly did it live – it felt authentic. To warm up the conference before the keynote, Delba and I bantered back and forth about the upcoming day of talks and brought community members and conf speakers up on the stage.
+
+rizbizkits
+rizwana akmal khan 🌌
+@rizbizkits
+LIVE NOW: #nextjsconf preshow ft @leeerob, @delba_oliveira, & @Rich_Harris talking SvelteKit
+
+quotes: "the people know", "i'm gonna move to canada" (😂), "docs are the product"
+
+initial take: i feel like i'm in the room thanks to the chatter in the background + camera views 🥳 
+LIVE NOW: #nextjsconf preshow ft @leeerob, @delba_oliveira, &amp; @Rich_Harris talking SvelteKit
+
+quotes: "the people know", "i'm gonna move to canada" (😂), "docs are the product"
+
+initial take: i feel like i'm in the room thanks to the chatter in the background + camera views 🥳 https://t.co/JdBGimARFH5:14 PM - Oct 25, 2022
+1
+3
+24
+Thank you again Rich, Una, Dan, Swyx, and Kap for joining us. Y'all are the best.
+
+Next.js 13 Pro Max by Vercel: Starting at $1299
+After finishing the pre-show, Delba and I walked backstage to get mic'd up before the keynote Q&A. Guillermo was about to go out on stage. We wished him good luck, and off he went.
+
+I watched the live monitor backstage and heard the crowd cheer. The gravity of the moment sunk in. I started jumping around with excitement. All the work had led to this moment.
+
+There were so many tweets. I think my phone froze. And the memes – the memes were incredible.
+
+thekitze
+kitze 🚀
+@thekitze
+ok but these prices are actually ridiculous 
+ok but these prices are actually ridiculous https://t.co/4K3GFpUMll6:27 PM - Oct 25, 2022
+75
+220
+3.1K
+The light-hearted jokes and slight roast of our very-clearly-Apple-inspired-love of the keynote made me smile and seemed fun for the whole community.
+
+Me hosting the Q&A with Next.js and React team members after the keynote.
+You can rewatch the keynote in case you missed it, or read my summary tweet thread.

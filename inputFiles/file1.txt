@@ -1,0 +1,28 @@
+Heroku made it easy for any developer to build and run applications in the cloud without managing their own infrastructure. Now 15 years later, it continues to inspire the next generation of developers. Why did Heroku become so popular? What can we learn from their incredible developer experience? How is Heroku shaping the next generation of serverless?
+
+Early Days of Heroku
+In 2006, Amazon Web Services (AWS) launched EC2, making it easy to run compute on-demand. Developers didn't need to purchase, set up, and manage their own infrastructure anymore – they could pay for cloud compute as needed.
+
+At the same time, many developers were building monolithic Ruby on Rails applications. Rails made developers incredibly productive at building applications, but it was still painful and time-consuming to get them deployed. Developers might spend weeks (or months) just on deployment.
+
+In 2007, three Ruby developers – James Lindenbaum, Adam Wiggins, and Orion Henry – founded Heroku. Their mission was to make computing more accessible. The first version of Heroku was an in-browser code editor that made it easy to build and deploy Ruby applications.
+
+While their original goal was to help educate developers and make computing more accessible, they noticed that many developers weren't using the platform for learning – they were using it as an easy way to get their Ruby applications deployed. Heroku joined Y Combinator to become the easiest place to build and deploy any Rails application.
+
+Shortly after Heroku launched, Google App Engine (2008) and Microsoft Azure (2010) entered the market. A trend started to appear. Developers wanted to spend less time configuring infrastructure, and more time building their application.
+
+In 2010, Heroku was bought by Salesforce for $212 million. At the time of acquisition, Heroku had ~30 employees and only supported Ruby. Y Combinator was still relatively unproven and Heroku was their largest exit yet.
+
+What did Salesforce see in Heroku that led to acquisition?
+
+Early Bets
+Heroku made some early tech choices that proved to be very productive for developers building monolithic applications: Ruby on Rails, Git, and Postgres.
+
+Git was created in 2005 by Linus Torvalds to help develop Linux. Even though there were many version control systems at the time, git begun to slowly grow in popularity. However, everything changed when GitHub was founded in 2007.
+
+Like the Heroku founders, the GitHub founders were Ruby developers. In 2008, the Ruby on Rails project switched to using GitHub, and the entire Ruby community followed shortly after (thus adopting git as well). Heroku became synonymous with Rails. Later, the creator of Ruby joined Heroku to continue working on the language.
+
+To run your Rails application, you needed a database. Heroku allowed you to add a Postgres database with one click through add-ons. Today, Postgres has grown to be one of the most popular databases, which wasn't as obvious in 2008. It became the default choice for folks building monolithic Rails applications.
+Heroku set a new standard for developer experience. To deploy your application, you pushed code to git and received a URL. git push heroku main. That's it.
+
+Heroku would build your application remotely (in the cloud) and deploy it to their infrastructure. Developers weren't used to deployment being this easy or fast. Heroku was ahead of its time and “serverless” in the sense you didn't have to manage servers yourself.

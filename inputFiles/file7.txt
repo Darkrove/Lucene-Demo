@@ -1,0 +1,67 @@
+Analyzing the top 10,000 publicly accessible websites on the internet, we see an interesting trend: ~6% are now built with React frameworks¹.
+
+rauchg
+Guillermo Rauch
+@rauchg
+@nextjs is now the top #15 software repo on GitHub ⭐️🤯 
+@nextjs is now the top #15 software repo on GitHub ⭐️🤯 https://t.co/hrL5onaknm4:43 PM - Dec 19, 2022
+41
+121
+1.4K
+You should consider using a framework (instead of building your own) because:
+
+Less time connecting tools, more time building products
+Easier onboarding and training of new developers
+Flexibility for different rendering strategies (server, client, or static)
+Opinionated choices prevent bikeshedding
+Deploy anywhere and incrementally adopt
+It's still just React
+But before we explore why you should use a framework, it's helpful to step back and look at the evolution of React.
+
+React is evolving
+React changed how developers build for the web, popularizing breaking down UI into reusable components and emphasizing incremental adoption.
+
+While it's certainly still a library that can be sprinkled into any webpage, the React architecture is a blueprint for frameworks to follow to create interactive, resilient, and performant frontend patterns.
+
+React has evolved from a library to also provide an architecture for frameworks.
+Consider React Server Components. This architecture is designed for frameworks to implement. Some aspects have been standardized between React frameworks (e.g. "use client") and others are being incubated (e.g. async/await in Server Components) during beta periods. Frameworks can still choose their own conventions (e.g. special filenames).
+
+Implementing the React architecture, and ultimately great UI patterns, requires deep integration between all parts of your frontend: data fetching and loading states, code splitting and bundling, routing and rendering, and more.
+
+This is where frameworks come in.
+
+dan_abramov
+дэн
+@dan_abramov
+so, Next.js 13 came out today with a first beta preview of React Server Components on by default. it’s a big deal. i want to thread a few personal reflections on this
+1:12 AM - Oct 26, 2022
+29
+380
+2.9K
+P.S. I talked about this evolution during the Reactathon keynote.
+
+Less time connecting tools, more time building products
+React has been around for almost 10 years – and the web has grown with it.
+
+Every aspect of frontend development has seen innovation: linting, formatting, compiling, bundling, minifying, deploying, and more. Developers want to spend less time configuring their tooling and more time writing React code, while still taking advantage of these latest advancements.
+
+Teams who build with React frameworks can focus on components and business logic, and lean on battle-tested open-source solutions for routing, rendering, data fetching, styling, authentication, testing, and more.
+
+An iceberg of react frameworks, showing that while most of the time it seems it's just components and business logic, the reality is that under water there are many other things frameworks are handling for you, like authentication, rendering, routing, state management, i18n, styling, and more.
+Further, teams can update to the latest versions of these frameworks and instantly receive both performance benefits and new tools to help them improve the end-user experience. In some cases, you add a command line flag and take advantage of multi-year and multi-million dollar investments into Rust-based JavaScript tooling. It's harder to justify investments into developer experience and tooling when building an internal framework (for most teams).
+
+Easier onboarding and training of new developers
+Frameworks help you spend more time writing React code.
+
+Compiling, bundling, minifying, code splitting, server-rendering, routing – by using a framework, your team spends less time building and maintaining solutions that are solved problems.
+
+For example, moving from React + Express + Webpack to a framework resulted in removing 20,000+ lines of code and 30+ dependencies – while improving HMR (Hot Module Reloading) from 1.3s to 131ms.
+
+Companies who choose to build with open-source React frameworks benefit from:
+
+Immediate knowledge ramp-up: New engineers can ship code on day one, bringing existing knowledge of popular frameworks from their last role or hobby projects.
+Up-to-date documentation: When developers are stuck, they're able to reference documentation that's updated daily or easily search Stack Overflow for their stack trace².
+Best-in-class security: Bugs and security vulnerabilities are reported and patched by communities of thousands of developers instead of overworked platform teams.
+Meta (the creators of React) have their own closed-source web framework. Many innovations in React have come from years of dogfooding new features (like Server Components) on Facebook.com through this framework.
+
+Using an open-source React framework, built on top of the latest React UI primitives, is the closest way to emulate the tools developers at Facebook use to build one of the largest web applications in the world.
